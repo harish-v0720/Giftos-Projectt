@@ -1,0 +1,287 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* HOMEPAGE CSS */
+
+/* HEADER CSS */
+
+.page-title {
+  justify-items: center;
+}
+
+.title-name {
+  margin: 0;
+}
+
+/* NAVBAR CSS */
+.nav-bar1 {
+  margin: 0;
+}
+.login-icon {
+  height: 20px;
+  position: relative;
+  top: 5px;
+  left: 8px;
+}
+
+.bag-icon {
+  height: 15px;
+  position: relative;
+  top: 6px;
+  left: 8px;
+}
+
+.search-icon {
+  height: 15px;
+  position: relative;
+  top: 8px;
+  left: 15px;
+}
+
+.nav-bar {
+  background-color: rgba(249, 236, 230, 255);
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 10px 0px 0px 0px;
+  list-style: none;
+}
+.nav-bar1 a {
+  text-decoration: none;
+  color: black;
+}
+.nav-bar1 a:hover {
+  background-color: whitesmoke;
+}
+
+.nav-item {
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: x-small;
+}
+
+.contact-us {
+  background-color: rgba(248, 156, 171, 255);
+  padding: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.welcome-title {
+  margin: 0;
+  color: white;
+}
+
+.lorem-text {
+  margin-top: 5px;
+  color: white;
+}
+
+.contact-btn {
+  margin-top: 10px;
+  color: white;
+  background-color: rgba(219, 69, 102, 255);
+  padding: 7px 15px 7px 15px;
+  border: none;
+  border-radius: 3px;
+}
+
+.arrow-img {
+  position: relative;
+  top: 122px;
+  width: 110px;
+}
+
+.products-list {
+  justify-items: center;
+}
+
+.images-list {
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+}
+
+.card {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  font-size: small;
+  background-color: white;
+  padding: 10px 6px;
+  border-radius: 16px;
+}
+
+.card-content {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  bottom: 1px;
+  left: 8px;
+}
+
+.welcome-div {
+  margin-top: 90px;
+}
+
+.ring-price {
+  position: relative;
+  left: 85px;
+  top: 1px;
+}
+.watch-price {
+  position: relative;
+  left: 75px;
+  top: 1px;
+}
+.teddy-price {
+  position: relative;
+  left: 48px;
+  top: 1px;
+}
+.flower-price {
+  position: relative;
+  left: 30px;
+  top: 1px;
+}
+
+.font {
+  font-size: small;
+}
+
+.price-color {
+  color: red;
+}
+.product-image {
+  height: 110px;
+  margin: 5px;
+  width: 80px;
+  padding: 50px;
+  background-color: rgb(240, 238, 238);
+}
+.welcome-img img {
+  object-fit: contain;
+  height: 300px;
+  margin-right: 350px;
+}
+
+.last-div {
+  margin-top: 25px;
+  background-color: rgba(127, 215, 235, 255);
+}
+
+/* SHOP PAGE CSS */
+
+.shop-nav {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 10px 0px 0px 0px;
+  list-style: none;
+  border: 1px solid rgb(219, 219, 219);
+  color: black;
+}
+
+.shop-nav a:hover {
+  background-color: rgb(228, 227, 227);
+}
+
+.shop-products {
+  padding-top: 100px;
+}
+
+.apps-icon {
+  background-color: rgb(39, 38, 38);
+  margin-top: 250px;
+  padding: 30px;
+}
+
+.appsicon-img {
+  margin-left: 45%;
+  position: relative;
+  top: 30px;
+}
+
+/* WHY US */
+
+.why-div {
+  margin-top: 120px;
+  text-align: center;
+}
+
+.why-us {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.why-card {
+  padding: 30px;
+  margin: 10px;
+  text-align: center;
+  background-color: rgba(155, 155, 155, 0.1);
+}
+
+.why-card p {
+  font-size: x-large;
+}
+.why-title {
+  font: bold;
+}
+
+.why-img {
+  height: 80px;
+}
+
+.testimonial-div {
+  margin-top: 120px;
+  text-align: center;
+}
+
+.testimonial-text {
+  text-align: left;
+  border: 2px solid rgb(249, 231, 207);
+  padding: 20px;
+  margin: 90px;
+  box-shadow: 5px;
+}
+
+.testimonial-text h2 {
+  color: rgb(212, 70, 70);
+}
+
+.testimonial-text h3 {
+  color: rgb(163, 160, 160);
+}
+
+.testimonial-text p {
+  font-size: x-large;
+  line-height: 120%;
+}
+
+.inverted {
+  position: absolute;
+  right: 135px;
+  top: 360px;
+}
+
+.left-arrow {
+  position: absolute;
+  left: 38px;
+  bottom: 175px;
+  height: 180px;
+}
+
+.right-arrow {
+  position: absolute;
+  right: 33px;
+  bottom: 175px;
+  height: 180px;
+}
