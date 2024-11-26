@@ -89,7 +89,7 @@ body {
 
 .arrow-img {
   position: relative;
-  top: 122px;
+  top: 61px;
   width: 110px;
 }
 
@@ -167,8 +167,8 @@ body {
 }
 .welcome-img img {
   object-fit: contain;
-  height: 300px;
-  margin-right: 350px;
+  height: 200px;
+  margin-right: 250px;
 }
 
 .last-div {
@@ -240,6 +240,8 @@ body {
   height: 80px;
 }
 
+/* TESTIMONIAL CSS */
+
 .testimonial-div {
   margin-top: 120px;
   text-align: center;
@@ -284,4 +286,48 @@ body {
   right: 33px;
   bottom: 175px;
   height: 180px;
+}
+
+/* CONTACT US CSS */
+
+.contact-div {
+  margin-top: 70px;
+  text-align: start;
+}
+
+.contact-div h2 {
+  margin-left: 265px;
+  margin-bottom: 35px;
+}
+
+.maps-div {
+  display: flex;
+  justify-content: center;
+  margin-left: 265px;
+  margin-right: 265px;
+  box-shadow: 0 0 15px rgb(231, 228, 228);
+}
+
+.form-div {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 20px;
+  align-items: center;
+}
+
+.text-box {
+  padding: 8px 130px 8px 10px;
+  margin-bottom: 25px;
+}
+
+.message {
+  padding: 40px 130px 40px 10px;
+}
+
+.send-btn {
+  padding: 8px 30px;
+  background-color: rgba(219, 69, 102, 255);
+  color: white;
+  border: none;
+  margin-top: 20px;
 }
