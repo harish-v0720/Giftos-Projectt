@@ -296,15 +296,15 @@ body {
 }
 
 .contact-div h2 {
-  margin-left: 265px;
+  margin-left: 340px;
   margin-bottom: 35px;
 }
 
 .maps-div {
   display: flex;
   justify-content: center;
-  margin-left: 265px;
-  margin-right: 265px;
+  margin-left: 340px;
+  margin-right: 340px;
   box-shadow: 0 0 15px rgb(231, 228, 228);
 }
 
