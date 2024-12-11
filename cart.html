@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="page-title">
+      <h4 class="title-name">GIFTOS</h4>
+    </div>
+
+    <div class="nav-bar1">
+      <ul class="nav-bar">
+        <a href="index.html"><li class="nav-item">HOME</li></a>
+        <a href="shop.html" target="_blank"><li class="nav-item">SHOP</li></a>
+        <a href="whyus.html" target="_blank"
+          ><li class="nav-item">WHY US</li></a
+        >
+        <a href="testimonial.html" target="_blank"
+          ><li class="nav-item">TESTIMONIAL</li></a
+        >
+        <a href="contact.html" target="_blank"
+          ><li class="nav-item">CONTACT US</li></a
+        >
+        <img class="login-icon" src="images/logos/loginicon.png" alt="" />
+        <a href="login.html" target="_blank"><li class="nav-item">Login</li></a>
+        <a href="cart.html" target="_blank">
+          <img class="bag-icon" src="images/logos/bagicon.png" />
+          <span class="cart-count">0</span>
+        </a>
+        <img class="search-icon" src="images/logos/search.png" />
+      </ul>
+    </div>
+
+    <h1 class="cart-title">Cart Items</h1>
+
+    <button class="order-btn">Order Now</button>
+
+    <div id="cart-items" class="cart-container"></div>
+
+    <script>
+      // Function to initialize the cart count
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.querySelector(".cart-count").textContent = cart.length;
+      }
+
+      // Function to add an item to the cart
+      function addToCart(item) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+      }
+
+      // Event listener for "Add to Cart" button
+      document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          const card = button.closest(".card");
+          const product = {
+            name: card.querySelector("h3").textContent,
+            price: card.querySelector(".price-color").textContent,
+            image: card.querySelector(".product-image").src,
+          };
+          addToCart(product);
+        });
+      });
+
+      // Initialize the cart count on page load
+      document.addEventListener("DOMContentLoaded", updateCartCount);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const cartContainer = document.getElementById("cart-items");
+
+        // Function to update the cart UI
+        function renderCart() {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          cartContainer.innerHTML = ""; // Clear the container
+
+          if (cart.length === 0) {
+            cartContainer.innerHTML = `<p class="empty-message">Your cart is empty.</p>`;
+            return;
+          }
+
+          // Render each cart item
+          cart.forEach((item, index) => {
+            const itemDiv = document.createElement("div");
+            itemDiv.innerHTML = `
+              <div class="card cart-shop">
+                <img class="product-image" src="${item.image}" alt="${item.name}" />
+                <h4 class="cartitem-name">${item.name}</h4>
+                <h4 class="cartitem-price">Price: ${item.price}</h4>
+                <button class="remove-btn" data-index="${index}">Remove from cart</button>
+              </div>
+              
+              
+
+            `;
+            cartContainer.appendChild(itemDiv);
+          });
+
+          // Add event listeners to "Remove" buttons
+          const removeButtons = document.querySelectorAll(".remove-btn");
+          removeButtons.forEach((button) => {
+            button.addEventListener("click", (e) => {
+              const index = parseInt(e.target.getAttribute("data-index"));
+              removeFromCart(index);
+              updateCartCount();
+            });
+          });
+        }
+
+        // Function to remove an item from the cart
+        function removeFromCart(index) {
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          cart.splice(index, 1); // Remove item at the given index
+          localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+          renderCart(); // Re-render the cart UI
+        }
+
+        // Initial render
+        renderCart();
+      });
+    </script>
+  </body>
+</html>
