@@ -521,7 +521,7 @@ h1.why-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 130px;
+  margin-top: 80px;
 }
 
 .empty-message {
@@ -609,4 +609,25 @@ h1.why-title {
 #cart-items {
   display: flex;
   flex-wrap: wrap;
+}
+
+#order-title {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#total-items {
+  margin-top: 60px;
+  text-align: center;
+}
+
+#total-fare {
+  text-align: center;
+}
+
+#cart-page {
+  margin-top: 25px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border: 1px solid black;
 }

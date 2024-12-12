@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Document</title>
+    <title>Cart Items</title>
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
@@ -33,13 +33,29 @@
       </ul>
     </div>
 
-    <h1 class="cart-title">Cart Items</h1>
+    <div id="cart-page">
+      <h1 class="cart-title">Cart Items</h1>
 
-    <button class="order-btn">Order Now</button>
+      <a href="ordernow.html" target="_blank" style="text-decoration: none"
+        ><button class="order-btn">Order Now</button></a
+      >
 
-    <div id="cart-items" class="cart-container"></div>
+      <div id="cart-items" class="cart-container"></div>
+
+      <h1 id="order-title">Order Summary</h1>
+
+      <div class="total-cart">
+        <div id="total-items"></div>
+        <div id="total-fare"></div>
+      </div>
+    </div>
 
     <script>
+      // Initialize the cart and total price directly without waiting for page load
+      updateCartCount(); // Updates the cart count
+      updateCartAndTotal(); // Updates the cart UI and total price
+      calculateTotalPrice(); // Calculates the total price
+
       // Function to initialize the cart count
       function updateCartCount() {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -52,76 +68,83 @@
         cart.push(item);
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartCount();
+        updateCartAndTotal(); // Re-render the cart UI and total
+        calculateTotalPrice();
       }
 
-      // Event listener for "Add to Cart" button
-      document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
-        button.addEventListener("click", () => {
-          const card = button.closest(".card");
-          const product = {
-            name: card.querySelector("h3").textContent,
-            price: card.querySelector(".price-color").textContent,
-            image: card.querySelector(".product-image").src,
-          };
-          addToCart(product);
-        });
-      });
-
-      // Initialize the cart count on page load
-      document.addEventListener("DOMContentLoaded", updateCartCount);
-
-      document.addEventListener("DOMContentLoaded", () => {
+      // Function to update the cart UI and total price
+      function updateCartAndTotal() {
         const cartContainer = document.getElementById("cart-items");
+        const totalItemsDiv = document.getElementById("total-items"); // Get the total-items div
+        const orderTitle = document.getElementById("order-title");
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cartContainer.innerHTML = "";
 
-        // Function to update the cart UI
-        function renderCart() {
-          const cart = JSON.parse(localStorage.getItem("cart")) || [];
-          cartContainer.innerHTML = ""; // Clear the container
+        if (cart.length === 0) {
+          cartContainer.innerHTML = `<p class="empty-message">Your cart is empty.</p>`;
+          totalItemsDiv.style.display = "none"; // Hide the total-items div
+          orderTitle.style.display = "none";
+        } else {
+          orderTitle.style.display = "block";
+          totalItemsDiv.style.display = "block"; // Show the total-items div
+          // Update the total number of items in the cart
+          totalItemsDiv.innerHTML = `<h3>Total Items: ${cart.length}</h3>`; // Display the total items
 
-          if (cart.length === 0) {
-            cartContainer.innerHTML = `<p class="empty-message">Your cart is empty.</p>`;
-            return;
-          }
-
-          // Render each cart item
           cart.forEach((item, index) => {
             const itemDiv = document.createElement("div");
             itemDiv.innerHTML = `
-              <div class="card cart-shop">
-                <img class="product-image" src="${item.image}" alt="${item.name}" />
-                <h4 class="cartitem-name">${item.name}</h4>
-                <h4 class="cartitem-price">Price: ${item.price}</h4>
-                <button class="remove-btn" data-index="${index}">Remove from cart</button>
-              </div>
-              
-              
-
-            `;
+        <div class="card cart-shop">
+          <img class="product-image" src="${item.image}" alt="${item.name}" />
+          <h4 class="cartitem-name">${item.name}</h4>
+          <h4 class="cartitem-price">Price: ${item.price}</h4>
+          <button class="remove-btn" data-index="${index}">Remove from cart</button>
+        </div>
+      `;
             cartContainer.appendChild(itemDiv);
           });
 
-          // Add event listeners to "Remove" buttons
           const removeButtons = document.querySelectorAll(".remove-btn");
           removeButtons.forEach((button) => {
             button.addEventListener("click", (e) => {
               const index = parseInt(e.target.getAttribute("data-index"));
               removeFromCart(index);
-              updateCartCount();
             });
           });
         }
 
-        // Function to remove an item from the cart
-        function removeFromCart(index) {
-          let cart = JSON.parse(localStorage.getItem("cart")) || [];
-          cart.splice(index, 1); // Remove item at the given index
-          localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
-          renderCart(); // Re-render the cart UI
+        calculateTotalPrice();
+      }
+
+      // Function to remove an item from the cart
+      function removeFromCart(index) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.splice(index, 1); // Remove item at the given index
+        localStorage.setItem("cart", JSON.stringify(cart)); // Update localStorage
+        updateCartCount(); // Update the cart count immediately after removal
+        updateCartAndTotal(); // Re-render the cart UI and total
+        calculateTotalPrice();
+      }
+
+      // Function to calculate and display the total price
+      function calculateTotalPrice() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalFareDiv = document.getElementById("total-fare");
+
+        if (cart.length === 0) {
+          totalFareDiv.innerHTML = "";
+          return;
         }
 
-        // Initial render
-        renderCart();
-      });
+        // Calculate total price
+        const totalPrice = cart.reduce((total, item) => {
+          return total + parseFloat(item.price.replace("$", ""));
+        }, 0);
+
+        // Display the total price
+        totalFareDiv.innerHTML = `<h3>Total Price: $${totalPrice.toFixed(
+          2
+        )}</h3>`;
+      }
     </script>
   </body>
 </html>
