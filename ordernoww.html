@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Gift Shop</title>
+    <link rel="stylesheet" href="/css/ordernow.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Order Confirmation</h1>
+        
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div id="order-items">
+                <!-- Cart items will be displayed here -->
+            </div>
+            <p id="total-price">Total Price: </p>
+        </div>
+
+        <div class="payment-method">
+            <h2>Select Payment Method</h2>
+            <label for="payment-method">Choose a payment method:</label>
+            <select id="payment-method">
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <option value="netbanking">Net Banking</option>
+                <option value="UPI">UPI</option>
+            </select>
+        </div>
+
+        <button class="confirm-order" onclick="confirmOrder()">Confirm Order</button>
+        
+        <div id="order-confirmation-message" class="hidden">
+            <h2>Your order has been placed successfully!</h2>
+            <p>Thank you for your purchase.</p>
+        </div>
+    </div>
+
+    <script src="order.js">
+        // Simulate the cart data for this example
+let cart = [
+    { name: 'Gift Item 1', price: 20.00, quantity: 2 },
+    { name: 'Gift Item 2', price: 35.00, quantity: 1 }
+];
+
+// Function to display the cart items and total price on the order confirmation page
+function displayOrderSummary() {
+    const orderItemsContainer = document.getElementById("order-items");
+    orderItemsContainer.innerHTML = ""; // Clear current order items
+
+    let totalPrice = 0;
+
+    // Loop through the cart array to display all items
+    cart.forEach(item => {
+        const orderItem = document.createElement("div");
+        orderItem.classList.add("order-item");
+        orderItem.innerHTML = `
+            <p>${item.name} (x${item.quantity})</p>
+            <p>Price: $${(item.price * item.quantity).toFixed(2)}</p>
+        `;
+        orderItemsContainer.appendChild(orderItem);
+
+        totalPrice += item.price * item.quantity;
+    });
+
+    // Update the total price
+    document.getElementById("total-price").innerText = `Total Price: $${totalPrice.toFixed(2)}`;
+}
+
+// Function to confirm the order
+function confirmOrder() {
+    const paymentMethod = document.getElementById("payment-method").value;
+    
+    if (paymentMethod === "") {
+        alert("Please select a payment method.");
+        return;
+    }
+
+    // Simulate order placement
+    alert(`Order placed successfully using ${paymentMethod}.`);
+
+    // Show the order confirmation message
+    document.getElementById("order-confirmation-message").classList.remove("hidden");
+    
+    // Optionally, clear the cart data after the order
+    cart = [];
+}
+
+// Call this function when the page loads to display the order summary
+window.onload = function() {
+    displayOrderSummary();
+};
+
+
+    </script>
+</body>
+</html>
