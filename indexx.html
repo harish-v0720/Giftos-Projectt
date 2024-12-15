@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giftos</title>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+  <body>
+    <div class="page-title">
+      <h4 class="title-name">GIFTOS</h4>
+    </div>
+
+    <div class="nav-bar1">
+      <ul class="nav-bar">
+        <a href="/index"><li class="nav-item">HOME</li></a>
+        <a href="/shop" target="_blank"><li class="nav-item">SHOP</li></a>
+        <a href="/whyus" target="_blank"
+          ><li class="nav-item">WHY US</li></a
+        >
+        <a href="/testimonial" target="_blank"
+          ><li class="nav-item">TESTIMONIAL</li></a
+        >
+        <a href="/contact" target="_blank"
+          ><li class="nav-item">CONTACT US</li></a
+        >
+        <img class="login-icon" src="/images/logos/loginicon.png" alt="" />
+        <a href="/login" target="_blank"><li class="nav-item">Login</li></a>
+        <a href="/cart" target="_blank">
+          <img class="bag-icon" src="/images/logos/bagicon.png" />
+          <span class="cart-count">0</span>
+        </a>
+        <img class="search-icon" src="/images/logos/search.png" />
+        <input type="text" id="search-bar" class="search-bar" placeholder="Search products..." oninput="filterProducts()"/>
+      </ul>
+    </div>
+
+    <div class="contact-us">
+      <div class="welcome-div">
+        <h1 class="welcome-title">Welcome To Our</h1>
+        <h1 class="welcome-title">Gift Shop</h1>
+        <p class="lorem-text">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum iure
+          doloremque itaque impedit a perspiciatis ipsum dolor sit amet
+          consectetur
+        </p>
+        <a href="/contact" target="_blank"
+          ><button class="contact-btn">CONTACT US</button></a
+        >
+        <img class="arrow-img" src="/images/logos/arrows.png" />
+      </div>
+      <div class="welcome-img">
+        <img src="/images/logos/picture.png" />
+      </div>
+    </div>
+
+    <div class="products-list">
+      <h3>LATEST PRODUCTS</h3>
+
+      <div class="products">
+        <div class="card">
+          <span class="badge">New</span>
+          <img class="product-image" src="/images/products/image1.png" />
+          <div class="card-content">
+            <h3 class="font">Ring</h3>
+            <p class="ring-price font">
+              Price <span class="price-color">$200</span>
+            </p>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="card">
+          <span class="badge">New</span>
+          <img class="product-image" src="/images/products/image2.png" />
+          <div class="card-content">
+            <h3 class="font">Watch</h3>
+            <p class="watch-price font">
+              Price <span class="price-color">$300</span>
+            </p>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="card">
+          <span class="badge">New</span>
+          <img class="product-image" src="/images/products/image3.png" />
+          <div class="card-content">
+            <h3 class="font">Teddy Bear</h3>
+            <p class="teddy-price font">
+              Price <span class="price-color">$110</span>
+            </p>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="card">
+          <span class="badge">New</span>
+          <img class="product-image" src="/images/products/image4.png" />
+          <div class="card-content">
+            <h3 class="font">Flower Boquet</h3>
+            <p class="flower-price font">
+              Price <span class="price-color">$45</span>
+            </p>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="products">
+        <div class="card">
+          <span class="badge">New</span>
+          <img class="product-image" src="/images/products/image5.png" />
+          <div class="card-content">
+            <h3 class="font">Teddy Bear</h3>
+            <p class="teddy-price font">
+              Price <span class="price-color">$95</span>
+            </p>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+        <div class="card">
+          <span class="badge">New</span>
+          <img class="product-image" src="/images/products/image6.png" />
+          <div class="card-content">
+            <h3 class="font">Flower Boquet</h3>
+            <p class="flower-price font">
+              Price <span class="price-color">$70</span>
+            </p>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="card">
+          <span class="badge">New</span>
+          <img class="product-image" src="/images/products/image7.png" />
+          <div class="card-content">
+            <h3 class="font">Watch</h3>
+            <p class="watch-price font">
+              Price <span class="price-color">$400</span>
+            </p>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+
+        <div class="card">
+          <span class="badge">New</span>
+          <img class="product-image" src="/images/products/image8.png" />
+          <div class="card-content">
+            <h3 class="font">Ring</h3>
+            <p class="ring-price font">
+              Price <span class="price-color">$450</span>
+            </p>
+          </div>
+          <button class="add-to-cart-btn">Add to Cart</button>
+        </div>
+      </div>
+
+      <a href="/shop" target="_blank"
+        ><button class="contact-btn">View All Products</button></a
+      >
+    </div>
+
+    <div class="last-div">
+      <img src="/images/logos/girlimage.png" />
+    </div>
+
+    <script>
+
+      function filterProducts() {
+        const searchQuery = document
+        .getElementById("search-bar")
+        .value.toLowerCase();
+        const productCards = document.querySelectorAll(".card");
+
+        productCards.forEach((card) => {
+        const productName = card
+        .querySelector(".font")
+        .textContent.toLowerCase();
+
+        if (productName.includes(searchQuery)) {
+          card.style.display = "block"; // Show matching products
+        } else {
+          card.style.display = "none"; // Hide non-matching products
+        }
+      });
+    }
+
+
+
+
+      // Function to initialize the cart count
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        document.querySelector(".cart-count").textContent = cart.length;
+      }
+
+      // Function to add an item to the cart
+      function addToCart(item) {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        cart.push(item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        updateCartCount();
+      }
+
+      // Event listener for "Add to Cart" button
+      document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+        button.addEventListener("click", () => {
+          const card = button.closest(".card");
+          const product = {
+            name: card.querySelector("h3").textContent,
+            price: card.querySelector(".price-color").textContent,
+            image: card.querySelector(".product-image").src,
+          };
+          addToCart(product);
+        });
+      });
+
+      // Initialize the cart count on page load
+      document.addEventListener("DOMContentLoaded", updateCartCount);
+    </script>
+  </body>
+</html>
