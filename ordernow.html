@@ -3,7 +3,136 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Order Summary</title>
+    <title>Order Confirmation - Gift Shop</title>
+    <link rel="stylesheet" href="ordernow.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="container">
+      <h1>Order Confirmation</h1>
+
+      <div class="order-summary">
+        <h2>Order Summary</h2>
+        <div id="order-items">
+          <!-- Cart items will be displayed here -->
+        </div>
+        <div id="total-price-display"></div>
+      </div>
+
+      <div class="payment-method">
+        <h2>Select Payment Method</h2>
+        <label for="payment-method">Choose a payment method:</label>
+        <select id="payment-method">
+          <option value="credit-card">Credit Card</option>
+          <option value="paypal">PayPal</option>
+          <option value="netbanking">Net Banking</option>
+          <option value="UPI">UPI</option>
+        </select>
+      </div>
+
+      <button class="confirm-order" onclick="confirmOrder()">
+        Confirm Order
+      </button>
+
+      <div id="order-confirmation-message" class="hidden">
+        <h2>Your order has been placed successfully!</h2>
+        <p>Thank you for your purchase.</p>
+      </div>
+    </div>
+
+    <script>
+      // Simulate the cart data for this example
+
+      // Function to confirm the order
+      function confirmOrder() {
+        const paymentMethod = document.getElementById("payment-method").value;
+
+        if (paymentMethod === "") {
+          alert("Please select a payment method.");
+          return;
+        }
+
+        // Show the order confirmation message
+        document
+          .getElementById("order-confirmation-message")
+          .classList.remove("hidden");
+
+        // Optionally, clear the cart data after the order
+        localStorage.removeItem("totalPrice");
+
+        // Optionally, clear the cart data after the order
+        cart = [];
+      }
+
+      // Call this function when the page loads to display the order summary
+      window.onload = function () {
+        displayOrderSummary();
+      };
+
+      // Function to display the order summary
+      function displayOrderSummary() {
+        // Retrieve cart items and total price from localStorage
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalPriceDisplay = document.getElementById(
+          "total-price-display"
+        );
+
+        if (cart.length === 0) {
+          // If the cart is empty, set total price to zero and clear outdated data
+          localStorage.setItem("totalPrice", "0.00");
+          totalPriceDisplay.textContent = "Total Price: $0.00";
+        } else {
+          // If the cart is not empty, display the stored total price
+          const totalPrice = localStorage.getItem("totalPrice") || "0.00";
+          totalPriceDisplay.textContent = `Total Price: $${parseFloat(
+            totalPrice
+          ).toFixed(2)}`;
+        }
+      }
+
+      // Function to update total price dynamically
+      function updateTotalPrice() {
+        const totalPrice = localStorage.getItem("totalPrice");
+        if (totalPrice) {
+          document.getElementById(
+            "total-price-display"
+          ).textContent = `Total Price: $${totalPrice}`;
+        }
+      }
+
+      // Monitor changes in localStorage and update the total price
+      window.addEventListener("storage", (event) => {
+        if (event.key === "totalPrice") {
+          updateTotalPrice();
+        }
+      });
+
+      function confirmOrder() {
+        const paymentMethod = document.getElementById("payment-method").value;
+
+        if (paymentMethod === "") {
+          alert("Please select a payment method.");
+          return;
+        }
+
+        // Show the order confirmation message
+        document
+          .getElementById("order-confirmation-message")
+          .classList.remove("hidden");
+
+        // Clear the cart and total price from localStorage
+        localStorage.removeItem("cart");
+        localStorage.setItem("totalPrice", "0.00");
+
+        // Optionally reload the page to refresh the order summary
+        setTimeout(() => {
+          location.reload();
+        }, 2000);
+      }
+
+      // Initialize order summary when the page loads
+      window.onload = function () {
+        displayOrderSummary();
+      };
+    </script>
+  </body>
 </html>

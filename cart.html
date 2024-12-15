@@ -37,7 +37,9 @@
       <h1 class="cart-title">Cart Items</h1>
 
       <a href="ordernow.html" target="_blank" style="text-decoration: none"
-        ><button class="order-btn">Order Now</button></a
+        ><button class="order-btn" style="cursor: not-allowed">
+          Order Now
+        </button></a
       >
 
       <div id="cart-items" class="cart-container"></div>
@@ -77,6 +79,7 @@
         const cartContainer = document.getElementById("cart-items");
         const totalItemsDiv = document.getElementById("total-items"); // Get the total-items div
         const orderTitle = document.getElementById("order-title");
+        const orderButton = document.querySelector(".order-btn");
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         cartContainer.innerHTML = "";
 
@@ -84,11 +87,15 @@
           cartContainer.innerHTML = `<p class="empty-message">Your cart is empty.</p>`;
           totalItemsDiv.style.display = "none"; // Hide the total-items div
           orderTitle.style.display = "none";
+          orderButton.disabled = true; // Disable the Order Now button
+          orderButton.style.cursor = "not-allowed"; // Change cursor to indicate non-clickable
         } else {
           orderTitle.style.display = "block";
           totalItemsDiv.style.display = "block"; // Show the total-items div
           // Update the total number of items in the cart
           totalItemsDiv.innerHTML = `<h3>Total Items: ${cart.length}</h3>`; // Display the total items
+          orderButton.disabled = false; // Enable the Order Now button
+          orderButton.style.cursor = "pointer"; // Restore clickable cursor
 
           cart.forEach((item, index) => {
             const itemDiv = document.createElement("div");
@@ -132,6 +139,7 @@
 
         if (cart.length === 0) {
           totalFareDiv.innerHTML = "";
+          localStorage.setItem("totalPrice", "0.00");
           return;
         }
 
@@ -139,6 +147,9 @@
         const totalPrice = cart.reduce((total, item) => {
           return total + parseFloat(item.price.replace("$", ""));
         }, 0);
+
+        // Save the total price to localStorage
+        localStorage.setItem("totalPrice", totalPrice.toFixed(2));
 
         // Display the total price
         totalFareDiv.innerHTML = `<h3>Total Price: $${totalPrice.toFixed(
